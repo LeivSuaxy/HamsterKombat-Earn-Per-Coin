@@ -33,5 +33,10 @@ namespace HamsterKombat_Earn_Per_Coin
             this.Price = price;
             this.Earn_per_hour = earn_per_hour;
         }
+
+        public override string ToString()
+        {
+            return $"ID: {this.ID}, Name: {this.Name}, Price: {this.Price}, Gain: {this.Earn_per_hour} \n";
+        }
     }
 }

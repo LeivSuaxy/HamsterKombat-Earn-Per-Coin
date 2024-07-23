@@ -20,7 +20,6 @@ namespace HamsterKombat_Earn_Per_Coin
             this.dbname = "cards.sqlite";
             this.stringConnection = $"Data Source={dbname};Version=3;";
             this.InitDatabaseProccess();
-
         }
 
         #region DATABASES
@@ -120,8 +119,9 @@ namespace HamsterKombat_Earn_Per_Coin
             }
         }
 
-        public void UpdateCard(CardModel card, int position)
+        public void UpdateCard(CardModel card)
         {
+            // First code
             using (var connection = new SQLiteConnection(this.stringConnection))
             {
                 connection.Open();
@@ -139,9 +139,90 @@ namespace HamsterKombat_Earn_Per_Coin
                 }
                 connection.Close();
             }
+            // End First Code
+
+            int position = 0;
+            // Second code
+            foreach (CardModel card_for in cards)
+            {
+                if (card_for.ID == card.ID)
+                {
+                    break;
+                }
+                position++;
+            }
 
             this.cards[position] = card;
+            // End Second code
+            
         }
+
+        public void DeleteCard(CardModel card)
+        {
+            // First code
+            using (var connection = new SQLiteConnection(this.stringConnection))
+            {
+                connection.Open();
+
+                string query = "DELETE FROM cards WHERE id = @id";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", card.ID);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+            // End First Code
+
+            int position = 0;
+            // Second code
+            foreach (CardModel card_for in cards)
+            {
+                if (card_for.ID == card.ID)
+                {
+                    break;
+                }
+                position++;
+            }
+
+            this.cards.RemoveAt(position);
+            // End Second code
+        }
+        #endregion
+
+        #region FUNCTIONS
+        public CardModel GetBestBuy()
+        {
+            CardModel card = null;
+            double best_gain = 0;
+
+            foreach (CardModel card_for in cards)
+            {
+                if (card_for.Earn_per_coin > best_gain)
+                {
+                    best_gain = card_for.Earn_per_coin;
+                    card = card_for;
+                }
+            }
+
+            return card;
+        }
+
+        public string GetStringCards()
+        {
+            string text = string.Empty;
+
+            foreach (CardModel card in cards)
+            {
+                text += card.ToString();
+            }
+
+            return text;
+        }
+
+        // TODO Balance Control Panel
         #endregion
     }
 }
