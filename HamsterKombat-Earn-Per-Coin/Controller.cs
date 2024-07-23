@@ -203,14 +203,14 @@ namespace HamsterKombat_Earn_Per_Coin
         #endregion
 
         #region FUNCTIONS
-        public CardModel GetBestBuy()
+        public CardModel GetBestBuy(double Money)
         {
             CardModel card = null;
             double best_gain = 0;
 
             foreach (CardModel card_for in cards)
             {
-                if (card_for.Earn_per_coin > best_gain)
+                if (card_for.Earn_per_coin > best_gain && card_for.Price <= Money)
                 {
                     best_gain = card_for.Earn_per_coin;
                     card = card_for;
@@ -220,19 +220,47 @@ namespace HamsterKombat_Earn_Per_Coin
             return card;
         }
 
-        public string GetOrderedList()
+        public string GetOrderedList(double Money)
         {
-            List<CardModel> orderedList = this.cards;
-
-            for(int i = 0;  i < orderedList.Count-1; i++)
+            List<CardModel> orderedList;
+            if (Money == double.MaxValue)
             {
-                for(int j = i+1; j < orderedList.Count; j++)
+                orderedList = this.cards;
+
+                for (int i = 0; i < orderedList.Count - 1; i++)
                 {
-                    if (orderedList[i].Earn_per_coin < orderedList[j].Earn_per_coin)
+                    for (int j = i + 1; j < orderedList.Count; j++)
                     {
-                        CardModel temp = orderedList[i];
-                        orderedList[i] = orderedList[j];
-                        orderedList[j] = temp;
+                        if (orderedList[i].Earn_per_coin < orderedList[j].Earn_per_coin)
+                        {
+                            CardModel temp = orderedList[i];
+                            orderedList[i] = orderedList[j];
+                            orderedList[j] = temp;
+                        }
+                    }
+                }
+            } else
+            {
+                orderedList = new List<CardModel>();
+
+                foreach (CardModel card_for in this.cards)
+                {
+                    if(card_for.Price <= Money)
+                    {
+                        orderedList.Add(card_for);
+                    }
+                }
+
+                for (int i = 0; i < orderedList.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < orderedList.Count; j++)
+                    {
+                        if (orderedList[i].Earn_per_coin < orderedList[j].Earn_per_coin)
+                        {
+                            CardModel temp = orderedList[i];
+                            orderedList[i] = orderedList[j];
+                            orderedList[j] = temp;
+                        }
                     }
                 }
             }
@@ -259,19 +287,36 @@ namespace HamsterKombat_Earn_Per_Coin
             return text;
         }
 
-        public string BuyOneEspecific(int position, double newPrice, double newGain)
+        public string BuyOneEspecific(uint id, double newPrice, double newGain, double Money)
         {
-            if (position >= 0 && position <= cards.Count)
+            if (id >= 0)
             {
-                CardModel cardModified = cards.ElementAt(position);
-
-                if (cardModified is not null)
+                int position = -1;
+                for (int i = 0; i < cards.Count; i++)
                 {
-                    cardModified.Price = newPrice;
-                    cardModified.Earn_per_hour = newGain;
-                    this.UpdateCard(cardModified);
+                    if (cards[i].ID == id)
+                    {
+                        position = i;
+                        break;
+                    }
                 }
-                return "Error: The card is null";
+
+                if (position < 0)
+                {
+                    return "Error: El id de la carta no existe";
+                }
+
+                if (Money != double.MaxValue)
+                {
+                    Money -= cards[position].Price;
+                }
+
+                cards[position].Price = newPrice;
+                cards[position].Earn_per_hour = newGain;
+
+                this.UpdateCard(cards[position]);
+
+                return "Success: Update Correctly";
             }
 
             return "Error: Please provide a correct position";
