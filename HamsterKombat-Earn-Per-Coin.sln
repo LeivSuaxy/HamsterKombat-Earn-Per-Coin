@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamsterKombat-Earn-Per-Coin", "HamsterKombat-Earn-Per-Coin\HamsterKombat-Earn-Per-Coin.csproj", "{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DA06898-7C3E-403E-8F21-831288D81F02}
+	EndGlobalSection
+EndGlobal

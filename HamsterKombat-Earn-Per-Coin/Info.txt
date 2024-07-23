@@ -1,0 +1,15 @@
+﻿Informaciones a manejar:
+Cada carta estara conformada por un nombre, precio de compra, y ganancia por hora.
+
+Cosas a tener en cuenta:
+21.05k significa 21.050 
+2.25k significa 2.250
+4.5k significa 4.500
+
+Resultado de ganancia por hora
+
+Precio entre gananacia
+Ejemplo 6.054.777 PRECIO 4.5k GPERH Seria 4500 / 6.054.777 = ....
+
+
+
