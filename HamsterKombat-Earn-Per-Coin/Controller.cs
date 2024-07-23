@@ -101,6 +101,7 @@ namespace HamsterKombat_Earn_Per_Coin
         #region CRUD
         public void InsertCard(string name, double price, double gain)
         {
+            int lastid;
             using (var connection = new SQLiteConnection(this.stringConnection))
             {
                 connection.Open();
@@ -114,9 +115,18 @@ namespace HamsterKombat_Earn_Per_Coin
                     command.Parameters.AddWithValue("@gain", gain);
 
                     command.ExecuteNonQuery();
+
+                    lastid = (int)connection.LastInsertRowId;
                 }
                 connection.Close();
             }
+
+            cards.Add(new CardModel(
+                    id: Convert.ToUInt32(lastid),
+                    name: name,
+                    price: price,
+                    earn_per_hour: gain
+                ));
         }
 
         public void UpdateCard(CardModel card)
@@ -210,6 +220,33 @@ namespace HamsterKombat_Earn_Per_Coin
             return card;
         }
 
+        public string GetOrderedList()
+        {
+            List<CardModel> orderedList = this.cards;
+
+            for(int i = 0;  i < orderedList.Count-1; i++)
+            {
+                for(int j = i+1; j < orderedList.Count; j++)
+                {
+                    if (orderedList[i].Earn_per_coin < orderedList[j].Earn_per_coin)
+                    {
+                        CardModel temp = orderedList[i];
+                        orderedList[i] = orderedList[j];
+                        orderedList[j] = temp;
+                    }
+                }
+            }
+
+            string text = string.Empty;
+
+            foreach (CardModel card_for in orderedList)
+            {
+                text += $"Nombre: {card_for.Name}, AVG: {card_for.Earn_per_coin} \n";
+            }
+
+            return text;
+        }
+
         public string GetStringCards()
         {
             string text = string.Empty;
@@ -220,6 +257,24 @@ namespace HamsterKombat_Earn_Per_Coin
             }
 
             return text;
+        }
+
+        public string BuyOneEspecific(int position, double newPrice, double newGain)
+        {
+            if (position >= 0 && position <= cards.Count)
+            {
+                CardModel cardModified = cards.ElementAt(position);
+
+                if (cardModified is not null)
+                {
+                    cardModified.Price = newPrice;
+                    cardModified.Earn_per_hour = newGain;
+                    this.UpdateCard(cardModified);
+                }
+                return "Error: The card is null";
+            }
+
+            return "Error: Please provide a correct position";
         }
 
         // TODO Balance Control Panel
