@@ -10,10 +10,15 @@ namespace HamsterKombat_Earn_Per_Coin
     internal class Controller
     {
         private List<CardModel> cards;
+        private string dbname;
+        private string stringConnection;
+
 
         public Controller()
         {
-            cards = new List<CardModel>();
+            this.cards = new List<CardModel>();
+            this.dbname = "cards.sqlite";
+            this.stringConnection = $"Data Source={dbname};Version=3;";
             this.InitDatabaseProccess();
 
         }
@@ -21,20 +26,18 @@ namespace HamsterKombat_Earn_Per_Coin
         #region DATABASES
         private void InitDatabaseProccess()
         {
-            string dbname = "cards.sqlite";
-
-            if (!this.ExistsDB(dbname))
+            if (!this.ExistsDB())
             {
-                CreateDatabase(dbname);
+                CreateDatabase();
             }
 
-            LoadCards(dbname);
+            LoadCards();
 
         }
 
-        private bool ExistsDB(string dbname)
+        private bool ExistsDB()
         {
-            if (File.Exists(dbname))
+            if (File.Exists(this.dbname))
             {
                 return true;
             }
@@ -42,11 +45,11 @@ namespace HamsterKombat_Earn_Per_Coin
             return false;
         }
         
-        private void CreateDatabase(string dbname)
+        private void CreateDatabase()
         {
-            SQLiteConnection.CreateFile(dbname);
+            SQLiteConnection.CreateFile(this.dbname);
 
-            using (var connection = new SQLiteConnection(this.GetConnectionString(dbname)))
+            using (var connection = new SQLiteConnection(this.stringConnection))
             {
                 connection.Open();
 
@@ -66,9 +69,9 @@ namespace HamsterKombat_Earn_Per_Coin
             }
         }
 
-        private void LoadCards(string dbname)
+        private void LoadCards()
         {
-            using (var connection = new SQLiteConnection(this.GetConnectionString(dbname)))
+            using (var connection = new SQLiteConnection(this.stringConnection))
             {
                 connection.Open();
 
@@ -87,19 +90,58 @@ namespace HamsterKombat_Earn_Per_Coin
                                 earn_per_hour: Convert.ToDouble(reader["gain"])
                             );
 
-                            cards.Add(card);
+                            this.cards.Add(card);
                         }
                     }
                 }
                 connection.Close();
             }
         }
-
-        private string GetConnectionString(string dbname) => $"Data Source={dbname};Version=3;";
-
         #endregion
-        #region CRUD
 
+        #region CRUD
+        public void InsertCard(string name, double price, double gain)
+        {
+            using (var connection = new SQLiteConnection(this.stringConnection))
+            {
+                connection.Open();
+
+                string query = "INSERT INTO cards (name, price, gain) VALUES (@name, @price, @gain)";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@name", name);
+                    command.Parameters.AddWithValue("@price", price);
+                    command.Parameters.AddWithValue("@gain", gain);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public void UpdateCard(CardModel card, int position)
+        {
+            using (var connection = new SQLiteConnection(this.stringConnection))
+            {
+                connection.Open();
+
+                string query = "UPDATE cards SET name = @name, price = @price, gain = @gain WHERE id = @id";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@name", card.Name);
+                    command.Parameters.AddWithValue("@price", card.Price);
+                    command.Parameters.AddWithValue("@gain", card.Earn_per_hour);
+                    command.Parameters.AddWithValue("@id", card.ID);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+
+            this.cards[position] = card;
+        }
         #endregion
     }
 }
