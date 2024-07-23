@@ -1,0 +1,1 @@
+# HamsterKombat-Earn-Per-Coin
