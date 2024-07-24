@@ -77,7 +77,7 @@ namespace HamsterKombat_Earn_Per_Coin
             {
                 connection.Open();
 
-                string query = "SELECT * FROM cards ORDER BY id";
+                string query = "SELECT * FROM cards WHERE active=1 ORDER BY id";
 
                 using (var command = new SQLiteCommand(query, connection))
                 {
@@ -139,7 +139,7 @@ namespace HamsterKombat_Earn_Per_Coin
             {
                 connection.Open();
 
-                string query = "UPDATE cards SET name = @name, price = @price, gain = @gain WHERE id = @id";
+                string query = "UPDATE cards SET name = @name, price = @price, gain = @gain, active=@active WHERE id = @id";
 
                 using (var command = new SQLiteCommand(query, connection))
                 {
@@ -147,6 +147,7 @@ namespace HamsterKombat_Earn_Per_Coin
                     command.Parameters.AddWithValue("@price", card.Price);
                     command.Parameters.AddWithValue("@gain", card.Earn_per_hour);
                     command.Parameters.AddWithValue("@id", card.ID);
+                    command.Parameters.AddWithValue("@active", card.Active);
 
                     command.ExecuteNonQuery();
                 }
@@ -232,7 +233,10 @@ namespace HamsterKombat_Earn_Per_Coin
                 
                 foreach (CardModel card_for in cards)
                 {
-                    orderedList.Add(card_for);
+                    if (card_for.Active)
+                    {
+                        orderedList.Add(card_for);
+                    }
                 }
 
                 for (int i = 0; i < orderedList.Count - 1; i++)
@@ -253,7 +257,7 @@ namespace HamsterKombat_Earn_Per_Coin
 
                 foreach (CardModel card_for in this.cards)
                 {
-                    if(card_for.Price <= this.Money)
+                    if(card_for.Price <= this.Money && card_for.Active)
                     {
                         orderedList.Add(card_for);
                     }
@@ -286,13 +290,23 @@ namespace HamsterKombat_Earn_Per_Coin
         public string GetStringCards()
         {
             string text = string.Empty;
+            double total_gain = 0;
+            double total_price = 0;
 
             foreach (CardModel card in cards)
             {
+                total_gain = card.Earn_per_hour;
+                total_price = card.Price;
                 text += card.ToString();
             }
 
-            return text;
+            total_gain /= cards.Count;
+            total_price /= cards.Count;
+
+            string text2 = $"Ganancias promedio de cartas {total_gain} \n" +
+                $"Precios promedios de cartas {total_price} \n";
+
+            return text + text2;
         }
 
         public string BuyOneEspecific(uint id, double newPrice, double newGain)
@@ -328,6 +342,28 @@ namespace HamsterKombat_Earn_Per_Coin
             }
 
             return "Error: Please provide a correct position";
+        }
+
+        public void DesactivateCard(uint id)
+        {
+            int position = -1;
+            int index = 0;
+            foreach (CardModel card in cards)
+            {
+                if (card.ID == id)
+                {
+                    position = index;
+                    break;
+                }
+                index++;
+            }
+
+            if (position == -1)
+            {
+                throw new KeyNotFoundException("The id is incorrect");
+            }
+            cards[position].Active = false;
+            this.UpdateCard(cards[position]);
         }
 
         // TODO Balance Control Panel

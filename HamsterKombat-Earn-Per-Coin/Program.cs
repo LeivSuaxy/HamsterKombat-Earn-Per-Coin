@@ -20,7 +20,8 @@ while (bucle)
     Console.WriteLine("5-Ver la mejor oferta");
     Console.WriteLine("6-Comprar una carta");
     Console.WriteLine("7-Establecer monedero");
-    Console.WriteLine("8-Salir");
+    Console.WriteLine("8-Desactivar carta");
+    Console.WriteLine("9-Salir");
     selected = int.Parse(Console.ReadLine());
 
     switch (selected)
@@ -110,6 +111,20 @@ while (bucle)
             controller.Money = money_temp;
             break;
         case 8:
+            Console.WriteLine(controller.GetStringCards());
+            Console.WriteLine("Digite el id de la carta que quiera comprar");
+            id = uint.Parse(Console.ReadLine());
+
+            try
+            {
+                controller.DesactivateCard(id);
+            }
+            catch (KeyNotFoundException e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            break;
+        case 9:
             Console.WriteLine("Exiting...");
             bucle = false;
             break;

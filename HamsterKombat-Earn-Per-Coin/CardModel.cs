@@ -26,6 +26,10 @@ namespace HamsterKombat_Earn_Per_Coin
 
         public double Earn_per_coin { get { return (Earn_per_hour / Price); } }
 
+        private bool active = true;
+
+        public bool Active { get => active; set { active = value; } }
+
         public CardModel(uint id, string name, double price, double earn_per_hour)
         {
             this.ID = id;
