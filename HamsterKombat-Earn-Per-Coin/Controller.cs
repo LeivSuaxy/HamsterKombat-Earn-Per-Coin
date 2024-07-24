@@ -12,6 +12,9 @@ namespace HamsterKombat_Earn_Per_Coin
         private List<CardModel> cards;
         private string dbname;
         private string stringConnection;
+        private double money = double.MaxValue;
+
+        public double Money { get => money; set => money = value; }
 
 
         public Controller()
@@ -203,7 +206,7 @@ namespace HamsterKombat_Earn_Per_Coin
         #endregion
 
         #region FUNCTIONS
-        public CardModel GetBestBuy(double Money)
+        public CardModel GetBestBuy()
         {
             CardModel card = null;
             double best_gain = 0;
@@ -220,12 +223,17 @@ namespace HamsterKombat_Earn_Per_Coin
             return card;
         }
 
-        public string GetOrderedList(double Money)
+        public string GetOrderedList()
         {
             List<CardModel> orderedList;
-            if (Money == double.MaxValue)
+            if (this.Money == double.MaxValue)
             {
-                orderedList = this.cards;
+                orderedList = new List<CardModel>();
+                
+                foreach (CardModel card_for in cards)
+                {
+                    orderedList.Add(card_for);
+                }
 
                 for (int i = 0; i < orderedList.Count - 1; i++)
                 {
@@ -245,7 +253,7 @@ namespace HamsterKombat_Earn_Per_Coin
 
                 foreach (CardModel card_for in this.cards)
                 {
-                    if(card_for.Price <= Money)
+                    if(card_for.Price <= this.Money)
                     {
                         orderedList.Add(card_for);
                     }
@@ -287,7 +295,7 @@ namespace HamsterKombat_Earn_Per_Coin
             return text;
         }
 
-        public string BuyOneEspecific(uint id, double newPrice, double newGain, double Money)
+        public string BuyOneEspecific(uint id, double newPrice, double newGain)
         {
             if (id >= 0)
             {
@@ -306,9 +314,9 @@ namespace HamsterKombat_Earn_Per_Coin
                     return "Error: El id de la carta no existe";
                 }
 
-                if (Money != double.MaxValue)
+                if (this.Money != double.MaxValue)
                 {
-                    Money -= cards[position].Price;
+                    this.Money -= cards[position].Price;
                 }
 
                 cards[position].Price = newPrice;

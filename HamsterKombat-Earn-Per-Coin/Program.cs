@@ -4,13 +4,13 @@ using HamsterKombat_Earn_Per_Coin;
 Controller controller = new Controller();
 Console.WriteLine("Hola bienvenidos a la calculadora de ganancia para Hamnster Kombat");
 int selected = 0;
-double Money = double.MaxValue;
+bool bucle = true;
 
-while (true)
+while (bucle)
 {
-    if (Money != double.MaxValue)
+    if (controller.Money != double.MaxValue)
     {
-        Console.WriteLine($"Monedero: {Money}");
+        Console.WriteLine($"Monedero: {controller.Money}");
     }
     Console.WriteLine("Digite la posicion de la opcion que desea:");
     Console.WriteLine("1-Ver cartas");
@@ -29,7 +29,7 @@ while (true)
             Console.WriteLine(controller.GetStringCards());
             break;
         case 2:
-            Console.WriteLine(controller.GetOrderedList(Money));
+            Console.WriteLine(controller.GetOrderedList());
             break;
         case 3:
             string name = string.Empty;
@@ -55,7 +55,7 @@ while (true)
             int option = 0;
             double newPrice = 0;
             double newGain = 0;
-            CardModel obtained = controller.GetBestBuy(Money);
+            CardModel obtained = controller.GetBestBuy();
             Console.WriteLine(obtained.Name);
             Console.WriteLine("Desea comprarla (1 Si, 0 No): ");
             option = int.Parse(Console.ReadLine());
@@ -71,7 +71,7 @@ while (true)
                 {
                     Console.WriteLine("Por favor inserte un valor correcto (Ejemplo: 3,43): ");
                 }
-                Money -= obtained.Price;
+             
                 obtained.Price = newPrice;
                 obtained.Earn_per_hour = newGain;
 
@@ -97,14 +97,21 @@ while (true)
                 Console.WriteLine("Por favor inserte un valor correcto (Ejemplo: 3,43): ");
             }
 
-            Console.WriteLine(controller.BuyOneEspecific(id, newPrice, newGain, Money));
+            Console.WriteLine(controller.BuyOneEspecific(id, newPrice, newGain));
             break;
         case 7:
+            double money_temp;
             Console.WriteLine("Digite la cantidad que destina a comprar: ");
-            while (!double.TryParse(Console.ReadLine(), out Money))
+            while (!double.TryParse(Console.ReadLine(), out money_temp))
             {
                 Console.WriteLine("Por favor inserte un valor correcto (Ejemplo: 3,43): ");
             }
+
+            controller.Money = money_temp;
+            break;
+        case 8:
+            Console.WriteLine("Exiting...");
+            bucle = false;
             break;
         default:
             Console.WriteLine("End round");
