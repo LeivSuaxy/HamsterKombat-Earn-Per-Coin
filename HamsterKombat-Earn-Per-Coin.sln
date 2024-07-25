@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamsterKombat-Earn-Per-Coin", "HamsterKombat-Earn-Per-Coin\HamsterKombat-Earn-Per-Coin.csproj", "{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamsterKombat-Earn-Per-Coin", "HamsterKombat-Earn-Per-Coin\HamsterKombat-Earn-Per-Coin.csproj", "{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "View", "View", "{987A04BD-C8F7-418D-B888-FECEDE38FBE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamster-Kombat-View", "Hamster-Kombat-View\Hamster-Kombat-View.csproj", "{8308ED23-9C07-452D-B964-63479E31B91A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FEF5AB0-061B-483B-9739-1E1FD2A3457A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8308ED23-9C07-452D-B964-63479E31B91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8308ED23-9C07-452D-B964-63479E31B91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8308ED23-9C07-452D-B964-63479E31B91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8308ED23-9C07-452D-B964-63479E31B91A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8308ED23-9C07-452D-B964-63479E31B91A} = {987A04BD-C8F7-418D-B888-FECEDE38FBE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3DA06898-7C3E-403E-8F21-831288D81F02}
