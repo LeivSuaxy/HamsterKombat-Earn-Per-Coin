@@ -21,7 +21,9 @@ while (bucle)
     Console.WriteLine("6-Comprar una carta");
     Console.WriteLine("7-Establecer monedero");
     Console.WriteLine("8-Desactivar carta");
-    Console.WriteLine("9-Salir");
+    Console.WriteLine("9-Encontrar carta");
+    Console.WriteLine("10-Secuencia de compra");
+    Console.WriteLine("11-Salir");
     selected = int.Parse(Console.ReadLine());
 
     switch (selected)
@@ -125,6 +127,22 @@ while (bucle)
             }
             break;
         case 9:
+            string find = string.Empty;
+            Console.WriteLine("Introduce un nombre a buscar: ");
+            find = Console.ReadLine();
+
+            Console.WriteLine(controller.FindCard(find));
+            break;
+        case 10:
+            Console.WriteLine("Digite la cantidad que destina a comprar: ");
+            while (!double.TryParse(Console.ReadLine(), out money_temp))
+            {
+                Console.WriteLine("Por favor inserte un valor correcto (Ejemplo: 3,43): ");
+            }
+
+            Console.WriteLine(controller.GetSequenceToBuy(money_temp));
+            break;
+        case 11:
             Console.WriteLine("Exiting...");
             bucle = false;
             break;

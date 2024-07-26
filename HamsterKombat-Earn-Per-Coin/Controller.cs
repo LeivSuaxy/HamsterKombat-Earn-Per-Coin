@@ -366,6 +366,60 @@ namespace HamsterKombat_Earn_Per_Coin
             this.UpdateCard(cards[position]);
         }
 
+        public string FindCard(string str)
+        {
+            string text = string.Empty;
+
+            foreach (var item in cards)
+            {
+                if(item.Name.IndexOf(str, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    text += item.ToString();
+                }
+            }
+            return text;
+        }
+
+        public string GetSequenceToBuy(double allPrice)
+        {
+            List<CardModel> list = new List<CardModel>();
+
+            foreach (CardModel card in cards)
+            {
+                if (card.Active)
+                {
+                    list.Add(card);
+                }
+            }
+
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                for (int j = i + 1; j < list.Count; j++)
+                {
+                    if (list[i].Earn_per_coin < list[j].Earn_per_coin)
+                    {
+                        CardModel temp = list[i];
+                        list[i] = list[j];
+                        list[j] = temp;
+                    }
+                }
+            }
+
+            // Este metodo recorre toda la lista buscando las mejores ofertas y va recomendando su compra hasta quedarte sin cambio
+            string text = string.Empty;
+
+            foreach(var item in list)
+            {
+                if(allPrice > item.Price)
+                {
+                    text += item.ToString();
+                    allPrice -= item.Price;
+                }
+            }
+
+            return text;
+        }
+
         // TODO Balance Control Panel
         #endregion
     }
