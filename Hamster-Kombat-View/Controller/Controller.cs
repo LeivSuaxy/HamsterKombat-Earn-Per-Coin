@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using View.Model.CardModel;
+using System.IO;
 
-namespace HamsterKombat_Earn_Per_Coin
+
+namespace View.Controller
 {
     internal class Controller
     {
@@ -15,7 +18,6 @@ namespace HamsterKombat_Earn_Per_Coin
         private double money = double.MaxValue;
 
         public double Money { get => money; set => money = value; }
-
 
 
         public Controller()
@@ -293,25 +295,19 @@ namespace HamsterKombat_Earn_Per_Coin
             string text = string.Empty;
             double total_gain = 0;
             double total_price = 0;
-            double total_rate = 0;
 
             foreach (CardModel card in cards)
             {
-                total_gain += card.Earn_per_hour;
-                total_price += card.Price;
-                total_rate += card.Earn_per_coin;
+                total_gain = card.Earn_per_hour;
+                total_price = card.Price;
                 text += card.ToString();
             }
 
             total_gain /= cards.Count;
             total_price /= cards.Count;
-            total_rate /= cards.Count;
-            double total_gain_per_second = total_gain / 60;
 
             string text2 = $"Ganancias promedio de cartas {total_gain} \n" +
-                $"Precios promedios de cartas {total_price} \n" +
-                $"Ganacia promedio por segundo prometida: {total_gain_per_second} \n" +
-                $"W/R promedio: {total_rate} \n";
+                $"Precios promedios de cartas {total_price} \n";
 
             return text + text2;
         }
