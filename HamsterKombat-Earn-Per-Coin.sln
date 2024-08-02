@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hamster-Kombat-View", "Hams
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamster-Kombat-API", "Hamster-Kombat-API\Hamster-Kombat-API.csproj", "{B01F0FD2-EEB1-48E4-AACB-A6BA3E43876C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamster-Kombat-App", "Hamster-Kombat-App\Hamster-Kombat-App.csproj", "{4F84A911-E512-4310-85E1-FA8A78E53520}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{B01F0FD2-EEB1-48E4-AACB-A6BA3E43876C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B01F0FD2-EEB1-48E4-AACB-A6BA3E43876C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B01F0FD2-EEB1-48E4-AACB-A6BA3E43876C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F84A911-E512-4310-85E1-FA8A78E53520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F84A911-E512-4310-85E1-FA8A78E53520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F84A911-E512-4310-85E1-FA8A78E53520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F84A911-E512-4310-85E1-FA8A78E53520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

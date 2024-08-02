@@ -5,6 +5,7 @@ Controller controller = new Controller();
 Console.WriteLine("Hola bienvenidos a la calculadora de ganancia para Hamnster Kombat");
 int selected = 0;
 bool bucle = true;
+TimesControl timesControl = new TimesControl();
 
 while (bucle)
 {
@@ -24,7 +25,8 @@ while (bucle)
     Console.WriteLine("9-Encontrar carta");
     Console.WriteLine("10-Secuencia de compra");
     Console.WriteLine("11-Salir");
-    selected = int.Parse(Console.ReadLine());
+    Console.WriteLine("12-Test");
+    selected = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
     switch (selected)
     {
@@ -145,6 +147,21 @@ while (bucle)
         case 11:
             Console.WriteLine("Exiting...");
             bucle = false;
+            break;
+        case 12:
+            string date;
+            Console.WriteLine("Digite una fecha: ");
+            date = Console.ReadLine();
+
+            try
+            {
+                DateTime resutl = timesControl.GetDateForString(date);
+                Console.WriteLine(resutl);
+            }
+            catch (InvalidDataException e)
+            {
+                Console.WriteLine(e.Message);
+            } 
             break;
         default:
             Console.WriteLine("End round");
