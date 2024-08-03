@@ -65,13 +65,18 @@
 
         public bool CanBuy()
         {
-            if (DateTime.Now > toBuyTime)
+            if (toBuyTime != null)
             {
-                ToBuyTime = null;
-                return true;
+                if (DateTime.Now > toBuyTime)
+                {
+                    ToBuyTime = null;
+                    return true;
+                }
+
+                return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

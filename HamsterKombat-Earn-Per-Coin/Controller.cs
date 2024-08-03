@@ -82,13 +82,21 @@ namespace HamsterKombat_Earn_Per_Coin
                     {
                         while (reader.Read())
                         {
+                            DateTime? toBuyTime = reader["tobuydate"] != DBNull.Value
+                                ? Convert.ToDateTime(reader["tobuydate"])
+                                : (DateTime?)null;
+                            
+                            DateTime? expireDate = reader["expiredate"] != DBNull.Value
+                                ? Convert.ToDateTime(reader["expiredate"])
+                                : (DateTime?)null;
+                            
                             CardModel card = new CardModel(
                                 id: Convert.ToUInt32(reader["id"]),
                                 name: reader["name"].ToString(),
                                 price: Convert.ToDouble(reader["price"]),
                                 earnPerHour: Convert.ToDouble(reader["gain"]),
-                                toBuyTime: Convert.ToDateTime(reader["tobuytime"]),
-                                expireDate: Convert.ToDateTime(reader["expiredate"])
+                                toBuyTime: toBuyTime,
+                                expireDate: expireDate
                             );
 
                             cards.Add(card);
@@ -108,14 +116,15 @@ namespace HamsterKombat_Earn_Per_Coin
             {
                 connection.Open();
 
-                string query = "INSERT INTO cards (name, price, gain, expiredate) VALUES (@name, @price, @gain)";
+                string query = "INSERT INTO cards (name, price, gain, expiredate) VALUES (@name, @price, @gain, @expiredate)";
 
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@name", name);
                     command.Parameters.AddWithValue("@price", price);
                     command.Parameters.AddWithValue("@gain", gain);
-
+                    command.Parameters.AddWithValue("@expiredate", expireTime);
+                    
                     command.ExecuteNonQuery();
 
                     lastid = (int)connection.LastInsertRowId;

@@ -126,6 +126,7 @@ while (bucle)
             break;
         case 6:
             uint id = 0;
+            DateTime? toBuyTimes = null;
             
             Console.WriteLine(controller.GetStringCards());
             Console.WriteLine("Digite el id de la carta que quiera comprar");
@@ -140,8 +141,26 @@ while (bucle)
             {
                 Console.WriteLine("Por favor inserte un valor correcto (Ejemplo: 3,43): ");
             }
+            
+            Console.WriteLine("Tiempo impuesto para comprar? 1 Si, 0 No: ");
+            option = int.Parse(Console.ReadLine());
+            if (option == 1)
+            {
+                string time = string.Empty;
+                Console.WriteLine("Digite el tiempo en el formato tL donde t = Numero de horas y L = h,m,s: ");
+                time = Console.ReadLine();
+                try
+                {
+                    toBuyTimes = timesControl.GetDateForString(time);
+                }
+                catch (InvalidDataException e)
+                {
+                    Console.WriteLine(e.Message);
+                    break;
+                }
+            }
 
-            Console.WriteLine(controller.BuyOneEspecific(id, newPrice, newGain));
+            Console.WriteLine(controller.BuyOneEspecific(id, newPrice, newGain, toBuyTimes));
             break;
         case 7:
             double money_temp;
