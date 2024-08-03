@@ -58,6 +58,11 @@ public class TimesControl
         Console.WriteLine(futureDate);
         Console.WriteLine(str[pointer]);
         
+        // Convert DateTime to ISO8601
+        // yyyy-MM-dd HH:mm:ss
+
+        //string time = futureDate.ToString("yyyy-MM-dd HH:mm:ss");
+        
         return futureDate;
     }
 }

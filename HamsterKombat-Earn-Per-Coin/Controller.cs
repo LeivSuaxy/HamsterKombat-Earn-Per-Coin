@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 
 namespace HamsterKombat_Earn_Per_Coin
 {
@@ -15,21 +10,19 @@ namespace HamsterKombat_Earn_Per_Coin
         private double money = double.MaxValue;
 
         public double Money { get => money; set => money = value; }
-
-
-
+        
         public Controller()
         {
-            this.cards = new List<CardModel>();
-            this.dbname = "cards.sqlite";
-            this.stringConnection = $"Data Source={dbname};Version=3;";
-            this.InitDatabaseProccess();
+            cards = new List<CardModel>();
+            dbname = "cards.sqlite";
+            stringConnection = $"Data Source={dbname};Version=3;";
+            InitDatabaseProccess();
         }
 
         #region DATABASES
         private void InitDatabaseProccess()
         {
-            if (!this.ExistsDB())
+            if (!ExistsDB())
             {
                 CreateDatabase();
             }
@@ -40,7 +33,7 @@ namespace HamsterKombat_Earn_Per_Coin
 
         private bool ExistsDB()
         {
-            if (File.Exists(this.dbname))
+            if (File.Exists(dbname))
             {
                 return true;
             }
@@ -50,17 +43,20 @@ namespace HamsterKombat_Earn_Per_Coin
         
         private void CreateDatabase()
         {
-            SQLiteConnection.CreateFile(this.dbname);
+            SQLiteConnection.CreateFile(dbname);
 
-            using (var connection = new SQLiteConnection(this.stringConnection))
+            using (var connection = new SQLiteConnection(stringConnection))
             {
                 connection.Open();
 
                 string query =  "CREATE TABLE IF NOT EXISTS cards (" +
-                                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                "name TEXT," +
-                                "price DOUBLE," +
-                                "gain DOUBLE" +
+                                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                                "name TEXT NOT NULL," +
+                                "price DOUBLE NOT NULL," +
+                                "gain DOUBLE NOT NULL," +
+                                "expiredate TEXT DEFAULT NULL," +
+                                "tobuydate TEXT DEFAULT NULL," +
+                                "active INTEGER DEFAULT 1" +
                                 ");";
 
                 using (var command = new SQLiteCommand(query, connection))
@@ -74,7 +70,7 @@ namespace HamsterKombat_Earn_Per_Coin
 
         private void LoadCards()
         {
-            using (var connection = new SQLiteConnection(this.stringConnection))
+            using (var connection = new SQLiteConnection(stringConnection))
             {
                 connection.Open();
 
@@ -90,10 +86,12 @@ namespace HamsterKombat_Earn_Per_Coin
                                 id: Convert.ToUInt32(reader["id"]),
                                 name: reader["name"].ToString(),
                                 price: Convert.ToDouble(reader["price"]),
-                                earn_per_hour: Convert.ToDouble(reader["gain"])
+                                earnPerHour: Convert.ToDouble(reader["gain"]),
+                                toBuyTime: Convert.ToDateTime(reader["tobuytime"]),
+                                expireDate: Convert.ToDateTime(reader["expiredate"])
                             );
 
-                            this.cards.Add(card);
+                            cards.Add(card);
                         }
                     }
                 }
@@ -103,14 +101,14 @@ namespace HamsterKombat_Earn_Per_Coin
         #endregion
 
         #region CRUD
-        public void InsertCard(string name, double price, double gain)
+        public void InsertCard(string name, double price, double gain, DateTime? expireTime = null)
         {
             int lastid;
-            using (var connection = new SQLiteConnection(this.stringConnection))
+            using (var connection = new SQLiteConnection(stringConnection))
             {
                 connection.Open();
 
-                string query = "INSERT INTO cards (name, price, gain) VALUES (@name, @price, @gain)";
+                string query = "INSERT INTO cards (name, price, gain, expiredate) VALUES (@name, @price, @gain)";
 
                 using (var command = new SQLiteCommand(query, connection))
                 {
@@ -126,21 +124,22 @@ namespace HamsterKombat_Earn_Per_Coin
             }
 
             cards.Add(new CardModel(
-                    id: Convert.ToUInt32(lastid),
-                    name: name,
-                    price: price,
-                    earn_per_hour: gain
+                id: Convert.ToUInt32(lastid),
+                name: name,
+                price: price,
+                earnPerHour: gain,
+                expireDate: expireTime
                 ));
         }
 
         public void UpdateCard(CardModel card)
         {
             // First code
-            using (var connection = new SQLiteConnection(this.stringConnection))
+            using (var connection = new SQLiteConnection(stringConnection))
             {
                 connection.Open();
 
-                string query = "UPDATE cards SET name = @name, price = @price, gain = @gain, active=@active WHERE id = @id";
+                string query = "UPDATE cards SET name = @name, price = @price, gain = @gain, expiredate=@expiredate, tobuydate=@tobuydate, active=@active WHERE id = @id";
 
                 using (var command = new SQLiteCommand(query, connection))
                 {
@@ -149,6 +148,8 @@ namespace HamsterKombat_Earn_Per_Coin
                     command.Parameters.AddWithValue("@gain", card.Earn_per_hour);
                     command.Parameters.AddWithValue("@id", card.ID);
                     command.Parameters.AddWithValue("@active", card.Active);
+                    command.Parameters.AddWithValue("@expiredate", card.ExpireDate);
+                    command.Parameters.AddWithValue("@tobuydate", card.ToBuyTime);
 
                     command.ExecuteNonQuery();
                 }
@@ -167,7 +168,7 @@ namespace HamsterKombat_Earn_Per_Coin
                 position++;
             }
 
-            this.cards[position] = card;
+            cards[position] = card;
             // End Second code
             
         }
@@ -215,7 +216,7 @@ namespace HamsterKombat_Earn_Per_Coin
 
             foreach (CardModel card_for in cards)
             {
-                if (card_for.Earn_per_coin > best_gain && card_for.Price <= Money)
+                if (card_for.CanBuy() && card_for.Earn_per_coin > best_gain && card_for.Price <= Money)
                 {
                     best_gain = card_for.Earn_per_coin;
                     card = card_for;
@@ -246,9 +247,7 @@ namespace HamsterKombat_Earn_Per_Coin
                     {
                         if (orderedList[i].Earn_per_coin < orderedList[j].Earn_per_coin)
                         {
-                            CardModel temp = orderedList[i];
-                            orderedList[i] = orderedList[j];
-                            orderedList[j] = temp;
+                            (orderedList[i], orderedList[j]) = (orderedList[j], orderedList[i]);
                         }
                     }
                 }
@@ -270,9 +269,7 @@ namespace HamsterKombat_Earn_Per_Coin
                     {
                         if (orderedList[i].Earn_per_coin < orderedList[j].Earn_per_coin)
                         {
-                            CardModel temp = orderedList[i];
-                            orderedList[i] = orderedList[j];
-                            orderedList[j] = temp;
+                            (orderedList[i], orderedList[j]) = (orderedList[j], orderedList[i]);
                         }
                     }
                 }
@@ -316,7 +313,7 @@ namespace HamsterKombat_Earn_Per_Coin
             return text + text2;
         }
 
-        public string BuyOneEspecific(uint id, double newPrice, double newGain)
+        public string BuyOneEspecific(uint id, double newPrice, double newGain, DateTime? tobuytime = null)
         {
             if (id >= 0)
             {
@@ -335,15 +332,16 @@ namespace HamsterKombat_Earn_Per_Coin
                     return "Error: El id de la carta no existe";
                 }
 
-                if (this.Money != double.MaxValue)
+                if (Money != double.MaxValue)
                 {
-                    this.Money -= cards[position].Price;
+                    Money -= cards[position].Price;
                 }
 
                 cards[position].Price = newPrice;
                 cards[position].Earn_per_hour = newGain;
+                cards[position].ToBuyTime = tobuytime;
 
-                this.UpdateCard(cards[position]);
+                UpdateCard(cards[position]);
 
                 return "Success: Update Correctly";
             }
@@ -405,9 +403,7 @@ namespace HamsterKombat_Earn_Per_Coin
                 {
                     if (list[i].Earn_per_coin < list[j].Earn_per_coin)
                     {
-                        CardModel temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp;
+                        (list[i], list[j]) = (list[j], list[i]);
                     }
                 }
             }

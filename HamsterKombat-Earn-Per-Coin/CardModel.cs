@@ -30,20 +30,48 @@
 
         // Needed
         // To Expire Date
+        private DateTime? expireDate;
+        
+        public DateTime? ExpireDate
+        {
+            get => expireDate;
+            set { expireDate = value; }
+        }
         // To buy time
+        private DateTime? toBuyTime;
+        
+        public DateTime? ToBuyTime
+        {
+            get => toBuyTime;
+            set { toBuyTime = value; }
+        }
         
         // Constructor
-        public CardModel(uint id, string name, double price, double earn_per_hour)
+        public CardModel(uint id, string name, double price, double earnPerHour, DateTime? toBuyTime = null,
+            DateTime? expireDate = null)
         {
-            this.ID = id;
-            this.Name = name;
-            this.Price = price;
-            this.Earn_per_hour = earn_per_hour;
+            ID = id;
+            Name = name;
+            Price = price;
+            Earn_per_hour = earnPerHour;
+            ExpireDate = expireDate;
+            ToBuyTime = toBuyTime;
         }
 
         public override string ToString()
         {
-            return $"ID: {this.ID}, Name: {this.Name}, Price: {this.Price}, Gain: {this.Earn_per_hour} \n";
+            return $"ID: {ID}, Name: {Name}, Price: {Price}, Gain: {Earn_per_hour} \n";
+        }
+
+        public bool CanBuy()
+        {
+            if (DateTime.Now > toBuyTime)
+            {
+                ToBuyTime = null;
+                return true;
+            }
+
+            return false;
         }
     }
 }

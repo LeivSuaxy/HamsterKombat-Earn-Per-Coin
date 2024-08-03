@@ -11,41 +11,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d0af398-c433-4c50-b1c1-a9ff6371bb9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Hamster-Kombat-App.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/MainActivity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/AboutResources.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/layout/activity_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-anydpi-v26/appicon.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-anydpi-v26/appicon_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-hdpi/appicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-hdpi/appicon_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-hdpi/appicon_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-mdpi/appicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-mdpi/appicon_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-mdpi/appicon_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xhdpi/appicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xhdpi/appicon_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xhdpi/appicon_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xxhdpi/appicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xxhdpi/appicon_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xxhdpi/appicon_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xxxhdpi/appicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xxxhdpi/appicon_background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/mipmap-xxxhdpi/appicon_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/values/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hamster-Kombat-App/Resources/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Test.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/TimesControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hamster-Kombat-View/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hamster-Kombat-View/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin.sln" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin.sln" afterDir="false" />
+    <list default="true" id="6d0af398-c433-4c50-b1c1-a9ff6371bb9f" name="Changes" comment="New Update.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/CardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/CardModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Controller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/HamsterKombat-Earn-Per-Coin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/HamsterKombat-Earn-Per-Coin.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Test.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/TimesControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/TimesControl.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,10 +32,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "LeivSuaxy"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/LeivSuaxy/HamsterKombat-Earn-Per-Coin.git",
+    "accountId": "42c7d823-e437-43a1-af00-83f221c31681"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/Principal/Proyectos Estudio/C#/HamsterKombat-Earn-Per-Coin/HamsterKombat-Earn-Per-Coin/CardModel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Principal/Proyectos Estudio/C#/HamsterKombat-Earn-Per-Coin/HamsterKombat-Earn-Per-Coin/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Test.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9b90947c2db7447db64f898d9a8caf2a103f3c0/cd/bb2cef3e/Activity.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -69,7 +56,7 @@
 }</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="SWEA" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -89,10 +76,13 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ],
     "rider.external.source.directories": [
       "C:\\Users\\Javier\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
       "C:\\Users\\Javier\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
@@ -197,8 +187,17 @@
       <workItem from="1722519997588" duration="1533000" />
       <workItem from="1722552053796" duration="732000" />
       <workItem from="1722624734400" duration="9000" />
-      <workItem from="1722635286555" duration="4208000" />
+      <workItem from="1722635286555" duration="14305000" />
     </task>
+    <task id="LOCAL-00001" summary="New Update.">
+      <option name="closed" value="true" />
+      <created>1722639675663</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722639675663</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,25 +218,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/TimesControl.cs</url>
-          <line>18</line>
-          <properties documentPath="C:\Principal\Proyectos Estudio\C#\HamsterKombat-Earn-Per-Coin\HamsterKombat-Earn-Per-Coin\TimesControl.cs" containingFunctionPresentation="Method 'GetDateForString'">
-            <startOffsets>
-              <option value="441" />
-            </startOffsets>
-            <endOffsets>
-              <option value="470" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="New Update." />
+    <option name="LAST_COMMIT_MESSAGE" value="New Update." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

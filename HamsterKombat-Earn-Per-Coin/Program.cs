@@ -25,7 +25,6 @@ while (bucle)
     Console.WriteLine("9-Encontrar carta");
     Console.WriteLine("10-Secuencia de compra");
     Console.WriteLine("11-Salir");
-    Console.WriteLine("12-Test");
     selected = int.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
 
     switch (selected)
@@ -37,6 +36,7 @@ while (bucle)
             Console.WriteLine(controller.GetOrderedList());
             break;
         case 3:
+            int option = 0;
             string name = string.Empty;
             double price = 0;
             double gain = 0;
@@ -54,10 +54,29 @@ while (bucle)
                 Console.WriteLine("Por favor inserte un valor correcto (Ejemplo: 3,43): ");
             }
 
-            controller.InsertCard(name, price, gain);
+            Console.WriteLine("Tiene tiempo de expiracion? (Digite 1 para si 0 para no)");
+            option = int.Parse(Console.ReadLine());
+            DateTime? expireTime = null;
+            
+            if (option == 1)
+            {
+                string time = string.Empty;
+                Console.WriteLine("Digite cuanto tiempo en el formato de horas, minutos o segundos (h, m, s) Example (2h = 2 horas) : ");
+                time = Console.ReadLine();
+                try
+                {
+                    expireTime = timesControl.GetDateForString(time);
+                }
+                catch (InvalidDataException e)
+                {
+                    Console.WriteLine(e.Message);
+                    break;
+                }
+            }
+
+            controller.InsertCard(name, price, gain, expireTime);
             break;
         case 5:
-            int option = 0;
             double newPrice = 0;
             double newGain = 0;
             CardModel obtained = controller.GetBestBuy();
@@ -80,6 +99,26 @@ while (bucle)
                 obtained.Price = newPrice;
                 obtained.Earn_per_hour = newGain;
 
+                Console.WriteLine("Tiempo impuesto para comprar? 1 Si, 0 No: ");
+                option = int.Parse(Console.ReadLine());
+                if (option == 1)
+                {
+                    DateTime? toBuyTime = null;
+                    string time = string.Empty;
+                    Console.WriteLine("Digite el tiempo en el formato tL donde t = Numero de horas y L = h,m,s: ");
+                    time = Console.ReadLine();
+                    try
+                    {
+                        toBuyTime = timesControl.GetDateForString(time);
+                        obtained.ToBuyTime = toBuyTime;
+                    }
+                    catch (InvalidDataException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        break;
+                    }
+                }
+                
                 controller.UpdateCard(obtained);
                 Console.WriteLine("Compra satisfecha");
             }
@@ -147,21 +186,6 @@ while (bucle)
         case 11:
             Console.WriteLine("Exiting...");
             bucle = false;
-            break;
-        case 12:
-            string date;
-            Console.WriteLine("Digite una fecha: ");
-            date = Console.ReadLine();
-
-            try
-            {
-                DateTime resutl = timesControl.GetDateForString(date);
-                Console.WriteLine(resutl);
-            }
-            catch (InvalidDataException e)
-            {
-                Console.WriteLine(e.Message);
-            } 
             break;
         default:
             Console.WriteLine("End round");
