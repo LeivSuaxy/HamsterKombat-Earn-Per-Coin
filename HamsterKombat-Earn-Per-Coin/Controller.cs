@@ -235,7 +235,7 @@ namespace HamsterKombat_Earn_Per_Coin
                 
                 foreach (CardModel card_for in cards)
                 {
-                    if (card_for.Active)
+                    if (card_for.Active && card_for.CanBuy())
                     {
                         orderedList.Add(card_for);
                     }
@@ -255,9 +255,9 @@ namespace HamsterKombat_Earn_Per_Coin
             {
                 orderedList = new List<CardModel>();
 
-                foreach (CardModel card_for in this.cards)
+                foreach (CardModel card_for in cards)
                 {
-                    if(card_for.Price <= this.Money && card_for.Active)
+                    if(card_for.Price <= Money && card_for.Active)
                     {
                         orderedList.Add(card_for);
                     }
@@ -279,7 +279,7 @@ namespace HamsterKombat_Earn_Per_Coin
 
             foreach (CardModel card_for in orderedList)
             {
-                text += $"Nombre: {card_for.Name}, AVG: {card_for.Earn_per_coin} \n";
+                text += $"ID: {card_for.ID}, Nombre: {card_for.Name}, AVG: {card_for.Earn_per_coin} \n";
             }
 
             return text;

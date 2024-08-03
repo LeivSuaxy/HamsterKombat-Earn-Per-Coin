@@ -11,7 +11,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d0af398-c433-4c50-b1c1-a9ff6371bb9f" name="Changes" comment="New Update.">
+    <list default="true" id="6d0af398-c433-4c50-b1c1-a9ff6371bb9f" name="Changes" comment="Added new functions to models.">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/CardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/CardModel.cs" afterDir="false" />
@@ -187,7 +187,7 @@
       <workItem from="1722519997588" duration="1533000" />
       <workItem from="1722552053796" duration="732000" />
       <workItem from="1722624734400" duration="9000" />
-      <workItem from="1722635286555" duration="14305000" />
+      <workItem from="1722635286555" duration="14635000" />
     </task>
     <task id="LOCAL-00001" summary="New Update.">
       <option name="closed" value="true" />
@@ -197,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722639675663</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added new functions to models.">
+      <option name="closed" value="true" />
+      <created>1722655082467</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722655082467</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +227,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="New Update." />
-    <option name="LAST_COMMIT_MESSAGE" value="New Update." />
+    <MESSAGE value="Added new functions to models." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new functions to models." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
