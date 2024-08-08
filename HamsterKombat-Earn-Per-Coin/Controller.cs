@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System.Data.Entity.Infrastructure.Interception;
+using System.Data.SQLite;
 
 namespace HamsterKombat_Earn_Per_Coin
 {
@@ -266,7 +267,7 @@ namespace HamsterKombat_Earn_Per_Coin
 
                 foreach (CardModel card_for in cards)
                 {
-                    if(card_for.Price <= Money && card_for.Active)
+                    if(card_for.Price <= Money && card_for.Active && card_for.CanBuy())
                     {
                         orderedList.Add(card_for);
                     }
@@ -430,6 +431,22 @@ namespace HamsterKombat_Earn_Per_Coin
             }
 
             return text;
+        }
+
+        public void SecureSave()
+        {
+            List<CardModel> toUpdate = new List<CardModel>();
+            
+            foreach (var card in cards)
+            {
+                if(card.CheckExpireDate()) toUpdate.Add(card);
+            }
+
+            foreach (var card in toUpdate)
+            {
+                UpdateCard(card);
+            }
+            
         }
 
         // TODO Balance Control Panel

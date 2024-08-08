@@ -62,7 +62,7 @@
         {
             return $"ID: {ID}, Name: {Name}, Price: {Price}, Gain: {Earn_per_hour} \n";
         }
-
+        
         public bool CanBuy()
         {
             if (toBuyTime != null)
@@ -77,6 +77,20 @@
             }
 
             return true;
+        }
+
+        public bool CheckExpireDate()
+        {
+            if (ExpireDate != null)
+            {
+                if (DateTime.Now > ExpireDate)
+                {
+                    Active = false;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

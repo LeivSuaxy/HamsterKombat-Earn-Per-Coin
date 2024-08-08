@@ -14,6 +14,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6d0af398-c433-4c50-b1c1-a9ff6371bb9f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamsterKombat-Earn-Per-Coin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/CardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/CardModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Controller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HamsterKombat-Earn-Per-Coin/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,30 +66,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.HamsterKombat-Earn-Per-Coin.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "AndroidSettingsPageId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.HamsterKombat-Earn-Per-Coin.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSettingsPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\Javier\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Javier\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\Javier\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Javier\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Javier\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Javier\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.HamsterKombat-Earn-Per-Coin">
     <configuration name="Hamster-Kombat-View" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -195,6 +198,9 @@
       <workItem from="1722624734400" duration="9000" />
       <workItem from="1722635286555" duration="15797000" />
       <workItem from="1722682828506" duration="3293000" />
+      <workItem from="1722810907537" duration="41000" />
+      <workItem from="1722984666810" duration="137000" />
+      <workItem from="1722984834100" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="New Update.">
       <option name="closed" value="true" />
@@ -228,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722683536949</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="?">
+      <option name="closed" value="true" />
+      <created>1722810917875</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722810917875</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +267,8 @@
     <MESSAGE value="Added new functions to models." />
     <MESSAGE value="Fixed another functions." />
     <MESSAGE value="Fixed Database errors.&#10;Fixed entry data errors." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Database errors.&#10;Fixed entry data errors." />
+    <MESSAGE value="?" />
+    <option name="LAST_COMMIT_MESSAGE" value="?" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
