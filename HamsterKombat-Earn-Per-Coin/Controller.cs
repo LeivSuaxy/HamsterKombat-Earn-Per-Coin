@@ -9,15 +9,26 @@ namespace HamsterKombat_Earn_Per_Coin
         private string dbname;
         private string stringConnection;
         private double money = double.MaxValue;
+        private static Controller _singletonController;
 
         public double Money { get => money; set => money = value; }
         
-        public Controller()
+        private Controller()
         {
             cards = new List<CardModel>();
             dbname = "cards.sqlite";
             stringConnection = $"Data Source={dbname};Version=3;";
             InitDatabaseProccess();
+        }
+
+        public static Controller GetInstance()
+        {
+            if (_singletonController == null)
+            {
+                _singletonController = new Controller();
+            }
+
+            return _singletonController;
         }
 
         #region DATABASES

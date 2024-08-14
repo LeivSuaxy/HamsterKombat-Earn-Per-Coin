@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using HamsterKombat_Earn_Per_Coin;
 
-Controller controller = new Controller();
+Controller controller = Controller.GetInstance();
 Console.WriteLine("Hola bienvenidos a la calculadora de ganancia para Hamnster Kombat");
 int selected = 0;
 bool bucle = true;
