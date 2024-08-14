@@ -79,18 +79,17 @@
             return true;
         }
 
-        public bool CheckExpireDate()
+        public void CheckExpireDate()
         {
             if (ExpireDate != null)
             {
                 if (DateTime.Now > ExpireDate)
                 {
                     Active = false;
-                    return true;
+                    Controller temp = Controller.GetInstance();
+                    temp.UpdateCard(this);
                 }
             }
-
-            return false;
         }
     }
 }

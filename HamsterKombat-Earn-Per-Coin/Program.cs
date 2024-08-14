@@ -204,7 +204,7 @@ while (bucle)
             break;
         case 11:
             Console.WriteLine("Exiting...");
-            //controller.SecureSave();
+            controller.SecureSave();
             bucle = false;
             break;
         default:

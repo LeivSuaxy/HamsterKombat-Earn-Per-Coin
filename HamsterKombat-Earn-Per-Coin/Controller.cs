@@ -250,7 +250,7 @@ namespace HamsterKombat_Earn_Per_Coin
         public string GetOrderedList()
         {
             List<CardModel> orderedList;
-            if (this.Money == double.MaxValue)
+            if (Money == double.MaxValue)
             {
                 orderedList = new List<CardModel>();
                 
@@ -450,12 +450,7 @@ namespace HamsterKombat_Earn_Per_Coin
             
             foreach (var card in cards)
             {
-                if(card.CheckExpireDate()) toUpdate.Add(card);
-            }
-
-            foreach (var card in toUpdate)
-            {
-                UpdateCard(card);
+                card.CheckExpireDate();
             }
             
         }
